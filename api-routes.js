@@ -8,18 +8,23 @@ router.get('/', function (req, res) {
         message: 'Welcome to RESTHub crafted with love!',
     });
 });
-// Import contact controller
-var contactController = require('./contactController');
-// Contact routes
-router.route('/contacts')
-    .get(contactController.index)
-    .post(contactController.new);
+// Import controller
+var controller = require('./controller');
+// controller routes
 
-router.route('/contacts/:contact_id')
-    .get(contactController.view)
-    .patch(contactController.update)
-    .put(contactController.update)
-    .delete(contactController.delete);
+
+router.route('/pantry')
+    .get(controller.index)
+    .post(controller.new); 
+
+router.route('/pantry/:pantry_id/basket/:basket_name')
+    .get(controller.view)
+    .put(controller.updateBasket)
+    .delete(controller.deleteBasket).post(controller.createBasket);
+
+router.route('/pantry/:pantry_id')
+    .get(controller.viewPantry)
+    .delete(controller.deletePantry);
 
 
 // Export API routes

@@ -1,7 +1,7 @@
-// contactModel.js
+// pantryModel.js
 var mongoose = require('mongoose');
 // Setup schema
-var contactSchema = mongoose.Schema({
+var pantrySchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -10,15 +10,17 @@ var contactSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    gender: String,
-    phone: String,
+    baskets:{
+        type: Object,
+        required: false
+    },
     create_date: {
         type: Date,
         default: Date.now
     }
 });
-// Export Contact model
-var Contact = module.exports = mongoose.model('contact', contactSchema);
+// Export pantry model
+var pantry = module.exports = mongoose.model('pantry', pantrySchema);
 module.exports.get = function (callback, limit) {
-    Contact.find(callback).limit(limit);
+    pantry.find(callback).limit(limit);
 }
