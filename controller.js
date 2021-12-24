@@ -27,14 +27,18 @@ exports.new = function (req, res) {
   // save the pantry and check for errors
   pantry.save(function (err) {
     // Check for validation error
-    if (err) res.json(err);
-    else
-      res.json({
-        message:
-          "New pantry created!, Please save Pantry Id to use it in future!",
-        pantry_id: pantry._id,
-        data: pantry,
-      });
+    if (err) {
+        res.json(err);
+    }
+        
+    else{
+        res.json({
+            message:
+              "New pantry created!, Please save Pantry Id to use it in future!",
+            pantry_id: pantry._id,
+            data: pantry,
+          });
+    }
   });
 };
 // Handle view contact info
@@ -157,7 +161,6 @@ exports.deleteBasket = function (req, res) {
         });
       });
     }
-
     // save the contact and check for errors
     else {
       res.json({
